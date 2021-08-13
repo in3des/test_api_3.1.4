@@ -88,6 +88,9 @@ public class Main {
 //        working!!!
         headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON }));
 
+//        working v2, not always
+//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
 
         // HttpEntity<String>: To get result as String.
 //        HttpEntity<String> entity = new HttpEntity<String>(headers);
@@ -132,8 +135,6 @@ public class Main {
 
 //        ResponseEntity<String> forEntity2 = template.getForEntity(API_URL, String.class);
 //        forEntity2.getHeaders().get("Set-Cookie").stream().forEach(System.out::println);
-
-
 
         ResponseEntity<String> response44 = template.exchange(API_URL, //
                 HttpMethod.PUT, requestBody44, String.class);
