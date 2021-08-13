@@ -81,10 +81,13 @@ public class Main {
         // Request to return JSON format
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Cookie", JSESSIONID);
-        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+//        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 //        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 //        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//        headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON }));
+
+//        working!!!
+        headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON }));
+
 
         // HttpEntity<String>: To get result as String.
 //        HttpEntity<String> entity = new HttpEntity<String>(headers);
@@ -113,8 +116,11 @@ public class Main {
         User userNewThree = new User(id, "James", "Brown", (byte) 16);
         User userNewThreeChange = new User(id, "Thomas", "Shelby", (byte) 16);
 
-        HttpEntity<String> requestBody33 = new HttpEntity<>(userNewThree.toString(), headers);
-        HttpEntity<String> requestBody44 = new HttpEntity<>(userNewThreeChange.toString(), headers);
+//        HttpEntity<String> requestBody33 = new HttpEntity<>(userNewThree.toString(), headers);
+//        HttpEntity<String> requestBody44 = new HttpEntity<>(userNewThreeChange.toString(), headers);
+
+        HttpEntity<User> requestBody33 = new HttpEntity<>(userNewThree, headers);
+        HttpEntity<User> requestBody44 = new HttpEntity<>(userNewThreeChange, headers);
 
 
         ResponseEntity<String> response33 = template.exchange(API_URL, //
@@ -124,8 +130,8 @@ public class Main {
 
         System.out.println("new code 1 = " + result33);
 
-        ResponseEntity<String> forEntity2 = template.getForEntity(API_URL, String.class);
-        forEntity2.getHeaders().get("Set-Cookie").stream().forEach(System.out::println);
+//        ResponseEntity<String> forEntity2 = template.getForEntity(API_URL, String.class);
+//        forEntity2.getHeaders().get("Set-Cookie").stream().forEach(System.out::println);
 
 
 
